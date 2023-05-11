@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'djongo',
     'rest_framework',
     'corsheaders',
-    'knox'
+    'knox',
 ]
 
 MIDDLEWARE = [
