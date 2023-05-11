@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djongo',
     'rest_framework',
     'corsheaders',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,11 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
