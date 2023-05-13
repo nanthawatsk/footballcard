@@ -2,7 +2,7 @@ from myapp.serializers import UserSerializer
 from rest_framework import generics, permissions, status, views
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import RegisterSerializer, UserSerializer, PasswordResetSerializer, FootballCardSerializer, ChangePasswordSerializer
+from .serializers import RegisterSerializer, UserSerializer, PasswordResetSerializer, FootballCardSerializer, ChangePasswordSerializer, FavoriteSerializer, UserCollectionSerializer, UserCollectionItemSerializer
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
@@ -14,7 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from pymongo import MongoClient
-from .models import FootballCard
+from .models import FootballCard, UserCollection, UserCollectionItem, Favorite
 # Create your views here.
 
 # Register API
@@ -106,10 +106,62 @@ class PasswordResetView(views.APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
 class FootballCardList(generics.ListCreateAPIView):
     queryset = FootballCard.objects.all()
     serializer_class = FootballCardSerializer
 
+
 class FootballCardDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FootballCard.objects.all()
     serializer_class = FootballCardSerializer
+
+
+class FavoriteCreateAPIView(generics.CreateAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+
+
+class favoriteDeleteAPIView(generics.DestroyAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+    
+
+class CollectionCreateAPIView(generics.CreateAPIView):
+    queryset = UserCollection.objects.all()
+    serializer_class = UserCollectionSerializer
+
+    def create(self, request, *args, **kwargs):
+        # Get the user from the request
+        user = request.user
+
+        # Create the collection with the user as the owner
+        collection_data = {
+            'name': request.data.get('name'),
+            'user': user.id
+        }
+        collection_serializer = self.get_serializer(data=collection_data)
+        collection_serializer.is_valid(raise_exception=True)
+        collection = collection_serializer.save()
+
+        # Add the cards to the collection
+        card_ids = request.data.get('cards', [])
+        for card_id in card_ids:
+            try:
+                card = FootballCard.objects.get(id=card_id)
+                collection.cards.add(card)
+            except FootballCard.DoesNotExist:
+                pass
+
+        # Return the serialized representation of the collection
+        response_serializer = self.get_serializer(collection)
+        return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+
+class UserCollectionItemAPIView(generics.CreateAPIView):
+    queryset = UserCollectionItem.objects.all()
+    serializer_class = UserCollectionItemSerializer
+
+class UserCollectionItemDeleteAPIView(generics.DestroyAPIView):
+    queryset = UserCollectionItem.objects.all()
+    serializer_class = UserCollectionItemSerializer

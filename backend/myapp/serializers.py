@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from .models import FootballCard
+from .models import FootballCard, Favorite, UserCollection, UserCollectionItem
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
@@ -47,4 +47,20 @@ class FootballCardSerializer(serializers.ModelSerializer):
         model = FootballCard
         fields = '__all__'
 
-        
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorite
+        fields = ('id', 'user', 'card', 'created_date')
+
+
+class UserCollectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCollection
+        fields = ('id', 'name', 'user')
+
+
+class UserCollectionItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCollectionItem
+        fields = ['id', 'user_collection', 'card', 'created_date']
