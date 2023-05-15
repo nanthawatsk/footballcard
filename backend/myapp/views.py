@@ -162,6 +162,8 @@ class UserCollectionItemAPIView(generics.CreateAPIView):
     queryset = UserCollectionItem.objects.all()
     serializer_class = UserCollectionItemSerializer
 
+
 class UserCollectionItemDeleteAPIView(generics.DestroyAPIView):
     queryset = UserCollectionItem.objects.all()
     serializer_class = UserCollectionItemSerializer
+
