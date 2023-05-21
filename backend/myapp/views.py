@@ -2,7 +2,7 @@ from myapp.serializers import UserSerializer
 from rest_framework import generics, permissions, status, views
 from rest_framework.response import Response
 from knox.models import AuthToken
-from .serializers import RegisterSerializer, UserSerializer, PasswordResetSerializer, FootballCardSerializer, ChangePasswordSerializer, FavoriteSerializer, UserCollectionSerializer, UserCollectionItemSerializer
+from .serializers import RegisterSerializer, UserSerializer, PasswordResetSerializer, FootballCardSerializer, ChangePasswordSerializer, FavoriteSerializer, UserCollectionSerializer, UserCollectionItemSerializer, RequestSerializer
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
@@ -14,7 +14,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from pymongo import MongoClient
-from .models import FootballCard, UserCollection, UserCollectionItem, Favorite
+from .models import FootballCard, UserCollection, UserCollectionItem, Favorite, Request
+from django.db import DatabaseError
 # Create your views here.
 
 # Register API
@@ -24,10 +25,13 @@ class RegisterAPI(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        try:
+            user = serializer.save()
+        except DatabaseError:
+            raise serializers.ValidationError('Email already in use')
         return Response({
-        "user": UserSerializer(user, context=self.get_serializer_context()).data,
-        "token": AuthToken.objects.create(user)[1]
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
         })
     
 
@@ -120,7 +124,11 @@ class FootballCardDetail(generics.RetrieveUpdateDestroyAPIView):
 class FavoriteCreateAPIView(generics.CreateAPIView):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+    
 
 class favoriteDeleteAPIView(generics.DestroyAPIView):
     queryset = Favorite.objects.all()
@@ -167,3 +175,7 @@ class UserCollectionItemDeleteAPIView(generics.DestroyAPIView):
     queryset = UserCollectionItem.objects.all()
     serializer_class = UserCollectionItemSerializer
 
+
+class RequestCreateAPIView(generics.CreateAPIView):
+    queryset = Request.objects.all()
+    serializer_class = RequestSerializer

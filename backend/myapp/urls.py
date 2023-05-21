@@ -1,7 +1,7 @@
 from django.urls import path, include
 from knox import views as knox_views
 from .views import RegisterAPI, LoginAPI
-from .views import ChangePasswordView, PasswordResetView, FootballCardList, FootballCardDetail, FavoriteCreateAPIView, CollectionCreateAPIView, UserCollectionItemAPIView, UserCollectionItemDeleteAPIView, favoriteDeleteAPIView
+from .views import ChangePasswordView, PasswordResetView, FootballCardList, FootballCardDetail, FavoriteCreateAPIView, CollectionCreateAPIView, UserCollectionItemAPIView, UserCollectionItemDeleteAPIView, favoriteDeleteAPIView, RequestCreateAPIView
 
 urlpatterns = [
     path('api/register/', RegisterAPI.as_view(), name='register'),
@@ -17,4 +17,5 @@ urlpatterns = [
     path('api/collections/', CollectionCreateAPIView.as_view(), name='collection-create'),
     path('api/usercollectionitem/create/', UserCollectionItemAPIView.as_view(), name='usercollectionitem'),
     path('api/usercollectionitem/<int:pk>/delete/', UserCollectionItemDeleteAPIView.as_view(), name='usercollectionitem-delete'),
+    path('api/request/', RequestCreateAPIView.as_view(), name='request-create' )
 ]
