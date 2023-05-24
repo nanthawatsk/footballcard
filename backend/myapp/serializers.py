@@ -7,7 +7,7 @@ from .models import FootballCard, Favorite, UserCollection, UserCollectionItem, 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('id', 'username', 'email', 'first_name', 'last_name')
 
 # Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):

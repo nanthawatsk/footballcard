@@ -109,7 +109,12 @@ class PasswordResetView(views.APIView):
                 return Response({'message': 'Invalid email address'}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
+
+class UserCreateAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 
 class FootballCardList(generics.ListCreateAPIView):
     queryset = FootballCard.objects.all()
