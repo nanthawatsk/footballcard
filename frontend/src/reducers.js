@@ -1,13 +1,12 @@
 import {
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT_SUCCESS,
-    LOGOUT_FAIL,
-  } from './actions/auth';
-  
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAIL,
+} from './actions/auth';
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem('auth token'),
   isAuthenticated: false,
   user: null,
   error: null,
@@ -16,17 +15,17 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      sessionStorage.setItem('token', action.payload.token);
-        return {
-            ...state,
-            token: action.payload.token,
-            isAuthenticated: true,
-            user: action.payload.user,
-            error: null,
-        };
+      localStorage.setItem('auth token', action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
+        isAuthenticated: true,
+        user: action.payload.user,
+        error: null,
+      };
 
     case LOGIN_FAIL:
-      sessionStorage.clear();
+      localStorage.removeItem('auth token');
       return {
         ...state,
         token: null,
@@ -34,8 +33,9 @@ const authReducer = (state = initialState, action) => {
         user: null,
         error: action.payload,
       };
+
     case LOGOUT_SUCCESS:
-        sessionStorage.clear();
+      localStorage.removeItem('auth token');
       return {
         ...state,
         token: null,
@@ -43,6 +43,7 @@ const authReducer = (state = initialState, action) => {
         user: null,
         error: null,
       };
+
     default:
       return state;
   }

@@ -4,10 +4,11 @@ from .views import RegisterAPI, LoginAPI, UserCreateAPIView
 from .views import ChangePasswordView, PasswordResetView, FootballCardList, FootballCardDetail, FavoriteCreateAPIView, CollectionCreateAPIView, UserCollectionItemAPIView, UserCollectionItemDeleteAPIView, favoriteDeleteAPIView, RequestCreateAPIView
 
 urlpatterns = [
-    path('api/register/', RegisterAPI.as_view(), name='register'),
-    path('api/login/', LoginAPI.as_view(), name='login'),
-    path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
-    path('api/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
+    path('api/auth/register/', RegisterAPI.as_view(), name='register'),
+    path('api/auth/login/', LoginAPI.as_view(), name='login'),
+    path('api/auth/logout/', knox_views.LogoutView.as_view(), name='logout'),
+    path('api/auth/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
+    path('api/auth/', include('knox.urls')),
     path('api/user/', UserCreateAPIView.as_view(), name='user'),
     path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
     path('api/password-reset/', PasswordResetView.as_view(), name='password_reset'),

@@ -9,7 +9,7 @@ export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 // Action Creators
 export const login = (username, password) => async (dispatch) => {
   try {
-    const response = await api.post('login/', { username, password });
+    const response = await api.post('auth/login/', { username, password });
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
@@ -24,21 +24,20 @@ export const login = (username, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-    try {
-      const token = localStorage.getItem('AuthToken'); // Retrieve the token from storage
-      const config = {
-        headers: {
-          Authorization: `Token ${token}`, // Include the token in the request headers
-        },
-      };
-  
-      await api.post('logout/', null, config); // Make sure the URL is correct
-      dispatch({ type: LOGOUT_SUCCESS });
-    } catch (error) {
-      dispatch({
-        type: LOGOUT_FAIL,
-        payload: error.response.data,
-      });
-    }
-  };
-  
+  try {
+    const token = localStorage.getItem('auth token');
+    const config = {
+      headers: {
+        Authorization: `token ${token}`,
+      },
+    };
+
+    await api.post('auth/logout/', null, config);
+    dispatch({ type: LOGOUT_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: LOGOUT_FAIL,
+      payload: error.response.data,
+    });
+  }
+};

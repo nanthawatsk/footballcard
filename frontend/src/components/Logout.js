@@ -7,7 +7,6 @@ const LogoutButton = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    // Perform any additional logout-related tasks if needed
   };
 
   return (
