@@ -15,6 +15,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from pymongo import MongoClient
 from .models import FootballCard, UserCollection, UserCollectionItem, Favorite, Request
+from django.shortcuts import get_object_or_404
 from django.db import DatabaseError
 # Create your views here.
 
@@ -114,6 +115,24 @@ class PasswordResetView(views.APIView):
 class UserCreateAPIView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+class UserProfileAPIView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+    
+class UserProfileUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+    
+    
 
 
 class FootballCardList(generics.ListCreateAPIView):

@@ -1,6 +1,6 @@
 from django.urls import path, include
 from knox import views as knox_views
-from .views import RegisterAPI, LoginAPI, UserCreateAPIView
+from .views import RegisterAPI, LoginAPI, UserCreateAPIView, UserProfileAPIView, UserProfileUpdateAPIView
 from .views import ChangePasswordView, PasswordResetView, FootballCardList, FootballCardDetail, FavoriteCreateAPIView, CollectionCreateAPIView, UserCollectionItemAPIView, UserCollectionItemDeleteAPIView, favoriteDeleteAPIView, RequestCreateAPIView
 
 urlpatterns = [
@@ -10,6 +10,8 @@ urlpatterns = [
     path('api/auth/logoutall/', knox_views.LogoutAllView.as_view(), name='logoutall'),
     path('api/auth/', include('knox.urls')),
     path('api/user/', UserCreateAPIView.as_view(), name='user'),
+    path('api/user/profile/', UserProfileAPIView.as_view(), name='user-profile'),
+    path('api/user/profile/update/', UserProfileUpdateAPIView.as_view(), name='user-profile-update'),
     path('api/change-password/', ChangePasswordView.as_view(), name='change-password'),
     path('api/password-reset/', PasswordResetView.as_view(), name='password_reset'),
     path('api/footballcard/', FootballCardList.as_view(), name='footballcard'),
