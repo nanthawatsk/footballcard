@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from './actions/auth';
+import { login } from '../actions/auth';
 import {
   MDBBtn,
   MDBContainer,
@@ -14,8 +14,7 @@ import {
 } from 'mdb-react-ui-kit';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import './components/Login.css';
-import logo from './imgs/logo-no-background.png';
+import logo from '../imgs/logo-no-background.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -38,8 +37,8 @@ const Login = () => {
   };
 
   return (
-    <MDBContainer fluid>
-      <MDBRow className='d-flex justify-content-center align-items-center h-100'>
+    <MDBContainer fluid className='bg-'>
+      <MDBRow className='d-flex justify-content-center align-items-center h-100 '>
         <MDBCol col='12'>
           <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
             <MDBCardBody className='p-5 w-100 d-flex flex-column'>
@@ -52,11 +51,11 @@ const Login = () => {
                 <h3>forgot password ?</h3>
                 <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
 
-                <MDBBtn className='login' type="submit" size='lg'>
+                <MDBBtn className= "login" type="submit" size='lg'>
                   Login
                 </MDBBtn>
               </form>
-              <h3>Don't have an account? <a href="./Register">Sign up</a></h3>
+              <h3>Don't have an account? <a href="./register">Sign up</a></h3>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

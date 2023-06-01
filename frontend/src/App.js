@@ -1,10 +1,11 @@
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import Header from './components/Header';
-import Login from'./Login';
-import Profile from './Profile';
+import Login from'./pages/Login';
+import Profile from './pages/Profile';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from './Register';
+import Register from './pages/Register';
+import Home from './pages/Home';
 
 
 
@@ -18,7 +19,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/index" element={<Header />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Header />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </div>
     </Router>
