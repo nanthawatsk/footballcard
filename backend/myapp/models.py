@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+
 # Create your models here.
+
+
 class FootballCard(models.Model):
     name = models.CharField(max_length=100)
     team = models.CharField(max_length=100)
@@ -82,4 +85,11 @@ class UserCollectionItem(models.Model):
 
     def __str__(self):
         return f"{self.user_collection.name}: {self.card.name}"
+
+    def save(self, *args, **kwargs):
+        # Check if the card is already in the collection
+        if UserCollectionItem.objects.filter(user_collection=self.user_collection, card=self.card).exists():
+            return  # Don't create a new UserCollectionItem if the card already exists in the collection
+
+        super().save(*args, **kwargs)
 

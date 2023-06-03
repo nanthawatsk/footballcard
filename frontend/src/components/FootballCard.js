@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../css/footballcard.css';
+import LikeButton from './Like';
+import AddToCollectionButton from './AddToCollection';
 
 const FootballCard = () => {
   const [cards, setCards] = useState([]);
@@ -18,22 +21,22 @@ const FootballCard = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Football Cards</h2>
+    <div className='football-container'>
       {cards.map(card => (
-        <div key={card.id}>
-            <img src={card.image} alt={card.name} style={{width:"200px"}} />
-          <h3>{card.name}</h3>
+        <div className='footballcard' key={card.id}>
+            <img src={card.image} alt={card.name}/>
+            <h3>{card.name}</h3>
             <p>Team: {card.team}</p>
             <p>Position: {card.position}</p>
             <p>Brand: {card.brand}</p>
             <p>Program: {card.program}</p>
             <p>Year: {card.year}</p>
             <p>League: {card.league}</p>
-          {/* Render additional card data */}
+            <LikeButton cardId={card.id} />
+            <AddToCollectionButton cardId={card.id} />
         </div>
       ))}
-    </div>
+      </div>
   );
 };
 

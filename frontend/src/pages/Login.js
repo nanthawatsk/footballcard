@@ -15,6 +15,8 @@ import {
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import logo from '../imgs/logo-no-background.png';
+import '../css/login.css';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +30,7 @@ const Login = () => {
       .then(() => {
         // Handle successful login
         console.log('Logged in');
-        window.location.href = '/home';
+        window.location.href = '/';
       })
       .catch(error => {
         // Handle login error
@@ -37,6 +39,7 @@ const Login = () => {
   };
 
   return (
+    <div className="login">
     <MDBContainer fluid className='bg-'>
       <MDBRow className='d-flex justify-content-center align-items-center h-100 '>
         <MDBCol col='12'>
@@ -51,7 +54,7 @@ const Login = () => {
                 <h3>forgot password ?</h3>
                 <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
 
-                <MDBBtn className= "login" type="submit" size='lg'>
+                <MDBBtn className= "loginBtn" type="submit" size='lg'>
                   Login
                 </MDBBtn>
               </form>
@@ -61,6 +64,7 @@ const Login = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    </div>
   );
 };
 

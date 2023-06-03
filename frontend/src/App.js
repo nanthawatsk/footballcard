@@ -6,22 +6,25 @@ import Profile from './pages/Profile';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import UserFavorites from './pages/Favorite';
+import MyCollections from './pages/MyCollections';
+import CollectionDetailPage from './pages/CollectionDetail';
 
 
 
 function App() {
   return (
     <Router>
-      <div>
         <Routes>
-          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/index" element={<Header />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/favorites" element={<UserFavorites/>} />
+          <Route path="/mycollections" element={<MyCollections/>} />
+          <Route path="/mycollections/:collectionId" element={<CollectionDetailPage/>} />
         </Routes>
-      </div>
     </Router>
   );
 }

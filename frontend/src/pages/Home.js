@@ -1,22 +1,26 @@
-import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import FootballCard from '../components/FootballCard'
-
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import FootballCard from '../components/FootballCard';
+import '../css/home.css';
+import { Navigate } from 'react-router-dom';
 
 function Home() {
+  if(!localStorage.getItem('auth token')) {
+    return<Navigate replace to = '/login'/>;
+  }
   return (
-    <><Header />
-    <FootballCard />
-    <div className="container">
-      <div className="row">
-        <div className="col-sm">
-          <h1>Home</h1>
+    <>
+      <Header />
+      <div className="home-container">
+        <h1>Trending Card</h1>
+        <div className="cards">
+            <FootballCard />
+          </div>
         </div>
-      </div>
-    </div>
-    <Footer /></>
-  )
+      <Footer />
+    </>
+  );
 }
 
-export default Home
+export default Home;

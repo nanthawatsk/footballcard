@@ -14,6 +14,8 @@ import logo from '../imgs/logo-no-background.png';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/auth';
+import '../css/register.css';
+import { Navigate } from 'react-router-dom';
 
 
 const Register = () => {
@@ -41,12 +43,12 @@ const Register = () => {
   };
 
   if (registrationStatus === 'success') {
-    window.location.href = '/home';
+    return <Navigate to="/" replace />;
   }
 
   return (
+    <div className="register">
     <MDBContainer fluid>
-      <link href="../css/Register.module.css" rel="stylesheet"></link>
       <MDBRow className='d-flex justify-content-center align-items-center h-100'>
         <MDBCol col='12'>
           <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '500px' }}>
@@ -106,7 +108,7 @@ const Register = () => {
                 />
                 <MDBCheckbox name='flexCheck' id='flexCheckDefault' className='mb-4' label='Remember password' />
 
-                <MDBBtn className="register" type="submit" size='lg'>
+                <MDBBtn className="registerBtn" type="submit" size='lg'>
                   Register
                 </MDBBtn>
               </form>
@@ -116,6 +118,7 @@ const Register = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    </div>
   );
 };
 

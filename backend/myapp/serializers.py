@@ -78,6 +78,7 @@ class UserCollectionItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCollectionItem
         fields = ['id', 'user_collection', 'card', 'created_date']
+        
 
 
 class RequestSerializer(serializers.ModelSerializer):

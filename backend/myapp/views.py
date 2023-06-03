@@ -152,11 +152,20 @@ class FavoriteCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-    
+        
+
+class FavoriteListAPIView(generics.ListAPIView):
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Favorite.objects.filter(user=self.request.user)
 
 class favoriteDeleteAPIView(generics.DestroyAPIView):
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
+    
     
 
 class CollectionCreateAPIView(generics.CreateAPIView):
@@ -189,6 +198,20 @@ class CollectionCreateAPIView(generics.CreateAPIView):
         response_serializer = self.get_serializer(collection)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
+class CollectionListAPIView(generics.ListAPIView):
+    queryset = UserCollection.objects.all()
+    serializer_class = UserCollectionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return UserCollection.objects.filter(user=self.request.user)
+    
+
+class CollectionDeleteAPIView(generics.DestroyAPIView):
+    queryset = UserCollection.objects.all()
+    serializer_class = UserCollectionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 class UserCollectionItemAPIView(generics.CreateAPIView):
     queryset = UserCollectionItem.objects.all()
@@ -198,6 +221,16 @@ class UserCollectionItemAPIView(generics.CreateAPIView):
 class UserCollectionItemDeleteAPIView(generics.DestroyAPIView):
     queryset = UserCollectionItem.objects.all()
     serializer_class = UserCollectionItemSerializer
+
+class UserCollectionItemListAPIView(generics.ListAPIView):
+    serializer_class = UserCollectionItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        user_collection_id = self.kwargs['pk']
+        return UserCollectionItem.objects.filter(user_collection__user=user, user_collection_id=user_collection_id)
+
 
 
 class RequestCreateAPIView(generics.CreateAPIView):

@@ -1,25 +1,28 @@
-.bg- {
+.login {
   background-color: #31c48d;
   font-family: 'Roboto', sans-serif;
+  overflow: auto;
+  height: 100vh;
+  width: 100vw;
 }
 
-.login{
+.loginBtn{
   width: 100%;
   background-color: #31c48d;
   margin-bottom: 2%;
 }
 
-.login:hover{
+.loginBtn:hover{
   background-color: #096a2e;
 }
 
-h2{
+.login h2{
   text-align: center;
   margin-top: 10%;
   margin-bottom: 10%;
 }
 
-h3{
+.login h3{
   font-size: 1rem;
   text-align: right;
 }
