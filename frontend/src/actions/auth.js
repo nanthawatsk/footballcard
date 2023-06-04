@@ -37,6 +37,7 @@ export const logout = () => async (dispatch) => {
 
     await api.post('auth/logout/', null, config);
     dispatch({ type: LOGOUT_SUCCESS });
+    window.location.href = '/login';
   } catch (error) {
     dispatch({
       type: LOGOUT_FAIL,

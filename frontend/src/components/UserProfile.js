@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
+import EditProfile from './EditProfile';
 
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditProfile = () => {
+    setIsEditing(true);
+  };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/user/profile/', {
           headers: {
-            Authorization: `token ${localStorage.getItem('auth token')}`,
+            Authorization: `Token ${localStorage.getItem('auth token')}`,
           },
         });
 
@@ -29,20 +33,51 @@ const UserProfile = () => {
     fetchUserProfile();
   }, []);
 
+  const handleUpdateProfile = async (updatedData) => {
+    try {
+      const response = await axios.put('http://localhost:8000/api/user/profile/update/', updatedData, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('auth token')}`,
+        },
+      });
+
+      if (response.status === 200) {
+        setUserProfile(response.data);
+        setIsEditing(false);
+      } else {
+        // Handle error response
+      }
+    } catch (error) {
+      // Handle network error
+    }
+  };
+
+
   if (!userProfile) {
     return <div>Loading...</div>;
   }
-  
+
   return (
     <>
-    <div>
-      <h2>User Profile</h2>
-      <p>Username: {userProfile.username}</p>
-      <p>First name: {userProfile.first_name}</p>
-      <p>Last name: {userProfile.last_name}</p>
-      <p>Email: {userProfile.email}</p>
-      {/* Add additional profile fields */}
-    </div>
+      <div>
+        {isEditing ? (
+          <EditProfile
+            userProfile={userProfile}
+            onUpdateProfile={handleUpdateProfile}
+            onCancelEdit={() => setIsEditing(false)}
+          />
+        ) : (
+          <>
+            <h2>User Profile</h2>
+            <p>Username: {userProfile.username}</p>
+            <p>First name: {userProfile.first_name}</p>
+            <p>Last name: {userProfile.last_name}</p>
+            <p>Email: {userProfile.email}</p>
+            {/* Add additional profile fields */}
+            <button onClick={handleEditProfile}>Edit Profile</button>
+          </>
+        )}
+      </div>
     </>
   );
 };

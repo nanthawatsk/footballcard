@@ -17,6 +17,9 @@ from pymongo import MongoClient
 from .models import FootballCard, UserCollection, UserCollectionItem, Favorite, Request
 from django.shortcuts import get_object_or_404
 from django.db import DatabaseError
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+from django.db.models.functions import Lower
 # Create your views here.
 
 # Register API
@@ -132,7 +135,28 @@ class UserProfileUpdateAPIView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
     
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+
+        # Check if the email is being updated and if it already exists
+        if 'email' in serializer.validated_data and User.objects.filter(email=serializer.validated_data['email']).exclude(pk=instance.pk).exists():
+            return Response({'detail': 'Email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_update(serializer)
+        return Response(serializer.data)
     
+class FootballcardSearchAPIView(generics.ListAPIView):
+    queryset = FootballCard.objects.all()
+    serializer_class = FootballCardSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['team', 'position', 'brand', 'program', 'year', 'league']
+    search_fields = ['name', 'team', 'position', 'brand', 'program', 'year', 'league']
+
+class FootballcardNewReleaseAPIView(generics.ListAPIView):
+    queryset = FootballCard.objects.all().order_by('-created_date')
+    serializer_class = FootballCardSerializer
 
 
 class FootballCardList(generics.ListCreateAPIView):

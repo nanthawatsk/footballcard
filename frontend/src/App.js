@@ -9,6 +9,9 @@ import Home from './pages/Home';
 import UserFavorites from './pages/Favorite';
 import MyCollections from './pages/MyCollections';
 import CollectionDetailPage from './pages/CollectionDetail';
+import NewRelease from './pages/NewRelease';
+
+
 
 
 
@@ -24,6 +27,7 @@ function App() {
           <Route path="/favorites" element={<UserFavorites/>} />
           <Route path="/mycollections" element={<MyCollections/>} />
           <Route path="/mycollections/:collectionId" element={<CollectionDetailPage/>} />
+          <Route path="/newrelease" element={<NewRelease/>} />
         </Routes>
     </Router>
   );

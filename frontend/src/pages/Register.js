@@ -46,6 +46,10 @@ const Register = () => {
     return <Navigate to="/" replace />;
   }
 
+  if (localStorage.getItem('auth token')) {
+    return <Navigate to="/" replace />;
+  }
+
   return (
     <div className="register">
     <MDBContainer fluid>

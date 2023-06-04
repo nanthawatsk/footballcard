@@ -3,6 +3,8 @@ import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LikeButton from '../components/Like';
+import { Navigate } from 'react-router-dom';
+
 
 
 const UserFavorites = () => {
@@ -51,6 +53,9 @@ const UserFavorites = () => {
       </div>
     ) : null;
   };
+  if(!localStorage.getItem('auth token')) {
+    return<Navigate replace to = '/login'/>;
+  }
 
   return (
     <>

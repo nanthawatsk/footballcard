@@ -37,6 +37,9 @@ const Login = () => {
         console.error('Login failed:', error);
       });
   };
+  if(localStorage.getItem('auth token')) {
+    return<Navigate replace to = '/'/>;
+  }
 
   return (
     <div className="login">

@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CreateCollection from '../components/CreateCollections';
 import DeleteCollection from '../components/DeleteCollection';
+import { Navigate } from 'react-router-dom';
 
 
 
@@ -26,6 +27,10 @@ const MyCollectionPage = () => {
 
     fetchCollections();
   }, []);
+
+  if(!localStorage.getItem('auth token')) {
+    return<Navigate replace to = '/login'/>;
+  }
 
 
   return (
