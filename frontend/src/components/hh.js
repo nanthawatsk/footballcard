@@ -1,8 +1,4 @@
-import React from "react";
-import logo from '../imgs/logo-no-background.png'
-import './Header.css'
-import LogoutButton from './Logout';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   MDBContainer,
   MDBNavbar,
@@ -12,6 +8,7 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
+  MDBBtn,
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
@@ -19,14 +16,13 @@ import {
   MDBCollapse,
 } from 'mdb-react-ui-kit';
 
-
-function Header() {
+export default function App() {
   const [showBasic, setShowBasic] = useState(false);
 
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='/'><img src={logo}/></MDBNavbarBrand>
+        <MDBNavbarBrand href='/'>Brand</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -45,10 +41,10 @@ function Header() {
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/mycollections'>My Collections</MDBNavbarLink>
+              <MDBNavbarLink active aria-current='page' href='/mycollections'>My Collections</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/favorites'>Favorites</MDBNavbarLink>
+              <MDBNavbarLink active aria-current='page' href='/favorites'>Favorites</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink href='/newrelease'>New Release</MDBNavbarLink>
@@ -60,28 +56,28 @@ function Header() {
             <MDBNavbarItem>
               <MDBDropdown>
                 <MDBDropdownToggle tag='a' className='nav-link' role='button'>
-                 Support
+                  Dropdown
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem link href="/request">Request</MDBDropdownItem>
+                  <MDBDropdownItem link>Action</MDBDropdownItem>
                   <MDBDropdownItem link>Another action</MDBDropdownItem>
                   <MDBDropdownItem link>Something else here</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
-            
-            
-            <MDBNavbarItem className='d-flex w-auto mb-3'>
+
+            <MDBNavbarItem>
+              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
+                Disabled
+              </MDBNavbarLink>
+            </MDBNavbarItem>
+          </MDBNavbarNav>
+          <MDBNavbarItem>
               <MDBNavbarLink href='/profile'>Profile</MDBNavbarLink>
             </MDBNavbarItem>
-            
-            <LogoutButton/>
-            
-          </MDBNavbarNav>
+            <LogoutButton />
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
   );
 }
-
-export default Header;

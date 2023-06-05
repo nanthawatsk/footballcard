@@ -31,7 +31,7 @@ class Request(models.Model):
     nationalteam = models.CharField(max_length=100)
     league = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images/', default='images/None/no-img.jpg')
-    created_date = models.DateTimeField(default=timezone.now)
+    created_date = models.DateTimeField(auto_now_add=True)
     is_accepted = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

@@ -10,6 +10,8 @@ import UserFavorites from './pages/Favorite';
 import MyCollections from './pages/MyCollections';
 import CollectionDetailPage from './pages/CollectionDetail';
 import NewRelease from './pages/NewRelease';
+import SearchPage from './pages/SearchPage';
+import RequestPage from './pages/RequestPage';
 
 
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/mycollections" element={<MyCollections/>} />
           <Route path="/mycollections/:collectionId" element={<CollectionDetailPage/>} />
           <Route path="/newrelease" element={<NewRelease/>} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/request" element={<RequestPage />} />
         </Routes>
     </Router>
   );
