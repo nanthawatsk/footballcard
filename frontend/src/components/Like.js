@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../css/like.css'
 
 const LikeButton = ({ cardId }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -51,9 +52,9 @@ const LikeButton = ({ cardId }) => {
   };
 
   return (
-    <button onClick={handleLike}>
-      {isLiked ? 'Unlike' : 'Like'}
-    </button>
+    <i className="like" onClick={handleLike}>
+      {isLiked ? <i id='like' className="fa-solid fa-heart"></i> : <i id='unlike' className="fa-regular fa-heart"></i>}
+    </i>
   );
 };
 

@@ -9,8 +9,8 @@
     transition: all 0.3s ease-in-out;
 }
 
-img {
-    width: 100%;
+.logo{
+    width: 20vh;
 }
 
 .nav-link{

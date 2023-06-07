@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button } from '@mui/material';
 
 const DeleteCollection = ({ collectionId, onDelete }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -22,8 +23,10 @@ const DeleteCollection = ({ collectionId, onDelete }) => {
 
   return (
     <div>
-      <button onClick={handleDelete}>Delete Collection</button>
-      {errorMessage && <p>{errorMessage}</p>}
+      <Button onClick={handleDelete} variant="outlined" color="error">
+      Delete
+      </Button>
+        {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 };

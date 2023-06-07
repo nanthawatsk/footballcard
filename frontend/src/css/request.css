@@ -1,0 +1,37 @@
+.request-container{
+    text-align: center;
+    justify-content: center;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #0077ff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #0060c0;
+  }
+
+  .sendBtn{
+    text-align: left;
+    margin-left: 20%;
+    margin-top: 1rem;
+    color: #ffffff;
+  }
+
+  #sendBtn{
+    background-color: #31c48d;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .inputImage{
+    text-align: left;
+    margin-left: 20%;
+  }
+

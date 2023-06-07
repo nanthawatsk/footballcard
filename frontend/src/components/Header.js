@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../imgs/logo-no-background.png'
-import './Header.css'
+import '../css/Header.css'
 import LogoutButton from './Logout';
 import { useState } from 'react';
 import {
@@ -18,6 +18,7 @@ import {
   MDBDropdownItem,
   MDBCollapse,
 } from 'mdb-react-ui-kit';
+import "bootstrap/dist/css/bootstrap.min.css"
 
 
 function Header() {
@@ -26,7 +27,7 @@ function Header() {
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='/'><img src={logo}/></MDBNavbarBrand>
+        <MDBNavbarBrand href='/'><img src={logo} className="logo"/></MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -39,11 +40,7 @@ function Header() {
 
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='/'>
-                Home
-              </MDBNavbarLink>
-            </MDBNavbarItem>
+    
             <MDBNavbarItem>
               <MDBNavbarLink href='/mycollections'>My Collections</MDBNavbarLink>
             </MDBNavbarItem>
@@ -64,19 +61,21 @@ function Header() {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem link href="/request">Request</MDBDropdownItem>
-                  <MDBDropdownItem link>Another action</MDBDropdownItem>
-                  <MDBDropdownItem link>Something else here</MDBDropdownItem>
+                  <MDBDropdownItem link>FaQ</MDBDropdownItem>
+                  <MDBDropdownItem link>Contect</MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavbarItem>
-            
-            
-            <MDBNavbarItem className='d-flex w-auto mb-3'>
-              <MDBNavbarLink href='/profile'>Profile</MDBNavbarLink>
+             
+            <MDBNavbarItem className="ms-auto">
             </MDBNavbarItem>
             
+            <MDBNavbarItem className="d-flex">
+              <MDBNavbarLink href='/profile'>Profile</MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem className="d-flex">
             <LogoutButton/>
-            
+            </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>

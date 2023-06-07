@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
+import '../css/collection.css'
+
 
 const CreateCollection = () => {
   const [name, setName] = useState('');
@@ -32,18 +37,19 @@ const CreateCollection = () => {
   };
 
   return (
-    <div>
-      <h4>Create Collection</h4>
+    <div className='collection-container'>
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={handleNameChange} required />
-        </label>
-        <br />
-        <button type="submit">Create</button>
+        <div className='createCtn'>
+      <TextField className='textfield' id="outlined-basic" label="Create Collection" variant="outlined" value={name} onChange={handleNameChange}  />
+    </div>
+    <br />
+        <div className='createContainer'>
+        <Button className='createBtn' id='createBtn' variant="contained" type="submit">Create</Button>
+        </div>
       </form>
     </div>
+    
   );
 };
 

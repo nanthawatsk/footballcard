@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import EditProfile from './EditProfile';
+import { Button } from '@mui/material';
+
 
 
 const UserProfile = () => {
@@ -68,13 +70,13 @@ const UserProfile = () => {
           />
         ) : (
           <>
-            <h2>User Profile</h2>
+            <h1>User Profile</h1>
             <p>Username: {userProfile.username}</p>
             <p>First name: {userProfile.first_name}</p>
             <p>Last name: {userProfile.last_name}</p>
             <p>Email: {userProfile.email}</p>
             {/* Add additional profile fields */}
-            <button onClick={handleEditProfile}>Edit Profile</button>
+            <Button variant="outlined" onClick={handleEditProfile}>Edit Profile</Button>
           </>
         )}
       </div>

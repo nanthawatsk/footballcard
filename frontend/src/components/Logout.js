@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logout } from '../actions/auth';
+import { Button } from '@mui/material';
 
 
 const LogoutButton = () => {
@@ -11,7 +12,9 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <Button variant="outlined" color="error" onClick={handleLogout} >
+  Logout
+</Button>
   );
 };
 

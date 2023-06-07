@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
 
 const DeleteCardFromCollection = ({ itemId, onDelete }) => {
   const headers = {
@@ -20,7 +21,9 @@ const DeleteCardFromCollection = ({ itemId, onDelete }) => {
 
   return ( 
     <>
-      <button onClick={handleDelete}>Delete Card</button>
+     <Button onClick={handleDelete} variant="outlined" color="error">
+     Delete Card
+      </Button>
     </>
   );
 };

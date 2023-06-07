@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import { Button } from '@mui/material';
 
 
 const EditProfile = () => {
@@ -57,35 +59,51 @@ const EditProfile = () => {
   };
 
   return (
+    <>
+    <h1>Edit Profile</h1>
     <form onSubmit={handleSubmit}>
     {errorMessage && <p>{errorMessage}</p>}
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
+    
+    <div>
+    <TextField className='textprofile' 
+        id="outlined-basic"  variant="outlined" type="text" 
         name="email"
         value={formData.email}
-        onChange={handleChange}
-      />
+        onChange={handleChange}/>
+    </div>
+      
       <br />
-      <label htmlFor="first_name">First Name</label>
-      <input
+      <div>
+      <TextField className='textprofile' 
+        id="outlined-basic"  variant="outlined" 
         type="text"
         name="first_name"
         value={formData.first_name}
         onChange={handleChange}
-      />
+        />
+      </div>
+      
         <br />
-      <label htmlFor="last_name">Last Name</label>
-      <input
+        <div>
+        <TextField className='textprofile' 
+        id="outlined-basic"  variant="outlined" 
         type="text"
         name="last_name"
         value={formData.last_name}
         onChange={handleChange}
-      />
+        />
+        </div>
+     
         <br />
-      <button type="submit">Submit</button>
-      <button type="button" onClick={handleCancel}>Cancel</button>
+        <Button type="submit" variant="contained" color="success">
+          Submit
+        </Button>
+  
+      <Button variant="outlined" color="error" type="button" onClick={handleCancel}>
+          Cancel
+      </Button>
     </form>
+    </>
   );
 };
 

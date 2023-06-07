@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import '../css/request.css'
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
+
 
 const Request = () => {
   const [name, setName] = useState('');
@@ -75,56 +80,61 @@ const Request = () => {
 
   return (
     <>
-      <div>Request</div>
+      <h1>Request</h1>
+      <div className='request-container'>
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={handleNameChange} required />
-        </label>
+        <div className='request-text'>
+      <TextField className='textfield' id="outlined-basic" label="Name" variant="outlined" value={name} onChange={handleNameChange} required />
+      </div>
+
         <br />
-        <label>
-          Team:
-          <input type="text" value={team} onChange={handleTeamChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" Team" variant="outlined" value={team} onChange={handleTeamChange} required  />
+          </div>
+        
         <br />
-        <label>
-          Position:
-          <input type="text" value={position} onChange={handlePositionChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" Position" variant="outlined" value={position} onChange={handlePositionChange} required />
+          </div>
+        
         <br />
-        <label>
-          Brand:
-          <input type="text" value={brand} onChange={handleBrandChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" Brand" variant="outlined" value={brand} onChange={handleBrandChange} required />
+          </div>
+        
         <br />
-        <label>
-          Program:
-          <input type="text" value={program} onChange={handleProgramChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" Program" variant="outlined" value={program} onChange={handleProgramChange} required />
+          </div>
+        
         <br />
-        <label>
-          Year:
-          <input type="text" value={year} onChange={handleYearChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" Year" variant="outlined" value={year} onChange={handleYearChange} required />
+          </div>
+        
         <br />
-        <label>
-          National Team:
-          <input type="text" value={nationalteam} onChange={handleNationalteamChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" National Team" variant="outlined" value={nationalteam} onChange={handleNationalteamChange} required />
+          </div>
+          
         <br />
-        <label>
-          League:
-          <input type="text" value={league} onChange={handleLeagueChange} required />
-        </label>
+          <div className='request-text'>
+        <TextField className='textfield' id="outlined-basic" label=" League" variant="outlined" value={league} onChange={handleLeagueChange} required />
+          </div>
+
         <br />
-        <label>
-          Image:
-          <input type="file" onChange={handleImageChange} required />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+        <div className='inputImage'>
+          <input type="file"  onChange={handleImageChange} required />
+        </div>
+        
+        <div className='sendBtn'>
+        <Button id='sendBtn' type="submit" variant="contained" endIcon={<SendIcon />}>
+          Send
+        </Button>
+        </div>
       </form>
+      </div>
     </>
   );
 };

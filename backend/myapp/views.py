@@ -151,8 +151,8 @@ class FootballcardSearchAPIView(generics.ListAPIView):
     queryset = FootballCard.objects.all()
     serializer_class = FootballCardSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['team', 'position', 'brand', 'program', 'year', 'league']
-    search_fields = ['name', 'team', 'position', 'brand', 'program', 'year', 'league']
+    filterset_fields = ['team', 'nationalteam', 'position', 'brand', 'program', 'year', 'league']
+    search_fields = ['name', 'team', 'nationalteam', 'position', 'brand', 'program', 'year', 'league']
 
 class FootballcardNewReleaseAPIView(generics.ListAPIView):
     queryset = FootballCard.objects.all().order_by('-created_date')

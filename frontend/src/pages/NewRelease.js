@@ -30,12 +30,14 @@ const NewRelease = () => {
   return (
     <>
     <Header />
+    <h1>New Release</h1>
     <div className='football-container'>
       {cards.map(card => (
         <div className='footballcard' key={card.id}>
             <img src={card.image} alt={card.name}/>
             <h3>{card.name}</h3>
             <p>Team: {card.team}</p>
+            <p>National team: {card.nationalteam}</p>
             <p>Position: {card.position}</p>
             <p>Brand: {card.brand}</p>
             <p>Program: {card.program}</p>

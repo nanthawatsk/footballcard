@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import FootballCard from '../components/FootballCard';
 import '../css/home.css';
 import { Navigate } from 'react-router-dom';
+import Slideshow from '../components/slideshow';
 
 function Home() {
   if(!localStorage.getItem('auth token')) {
@@ -12,8 +13,9 @@ function Home() {
   return (
     <>
       <Header />
+      <Slideshow />
       <div className="home-container">
-        <h1>Trending Card</h1>
+        <h1 className='trending'>Trending Card</h1>
         <div className="cards">
             <FootballCard />
           </div>

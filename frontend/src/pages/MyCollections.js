@@ -6,6 +6,8 @@ import Footer from '../components/Footer';
 import CreateCollection from '../components/CreateCollections';
 import DeleteCollection from '../components/DeleteCollection';
 import { Navigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import '../css/collection.css'
 
 
 
@@ -36,23 +38,27 @@ const MyCollectionPage = () => {
   return (
     <div>
     <Header/>
-      <h2>My Collections</h2>
+    <div className='myCollectionContainer'>
+      <h1>My Collections</h1>
       <CreateCollection />
-      {collections.map((collection) => (
-        <div key={collection.id}>
-          <Link to={`/mycollections/${collection.id}`}>
-            <h3>{collection.name}</h3>
-          </Link>
-          <DeleteCollection collectionId={collection.id} />
-          <div>
-            {collection.cards && collection.cards.map((card) => (
-              <p key={card.id}>{card.title}</p>
-            ))}
-          </div>
+        <div class="collection-grid">
+          {collections.map((collection) => (
+            <div class="collection-card" key={collection.id}>
+              <Link to={`/mycollections/${collection.id}`}>
+                <h3>{collection.name}</h3>
+              </Link>
+              <div class="card-content">
+                {collection.cards && collection.cards.map((card) => (
+                  <p key={card.id}>{card.title}</p>
+                ))}
+                </div>
+                <DeleteCollection collectionId={collection.id} />
+              </div>
+          ))}
         </div>
-      ))}
       <Footer/>
     </div>
+  </div>
   );
 };
 

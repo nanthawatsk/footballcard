@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LikeButton from '../components/Like';
 import { Navigate } from 'react-router-dom';
+import AddToCollectionButton from '../components/AddToCollection';
 
 
 
@@ -44,12 +45,14 @@ const UserFavorites = () => {
         <img src={card.image} alt={card.name} />
         <h3>{card.name}</h3>
         <p>Team: {card.team}</p>
+        <p>National team: {card.nationalteam}</p>
         <p>Position: {card.position}</p>
         <p>Brand: {card.brand}</p>
         <p>Program: {card.program}</p>
         <p>Year: {card.year}</p>
         <p>League: {card.league}</p>
         <LikeButton cardId={card.id} />
+        <AddToCollectionButton cardId={card.id} />
       </div>
     ) : null;
   };
@@ -61,7 +64,7 @@ const UserFavorites = () => {
     <>
     <Header />
     <div>
-      <h2>My Favorite Cards</h2>
+      <h1>My Favorite Cards</h1>
       {favorites.length > 0 ? (
         <div className='football-container'>
           {favorites.map((favorite) => (

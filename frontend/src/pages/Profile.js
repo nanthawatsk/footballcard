@@ -5,6 +5,8 @@ import UserProfile from '../components/UserProfile';
 import { Navigate } from 'react-router-dom';
 import ChangePassword from '../components/ChangePassword';
 import { useState } from 'react';
+import '../css/profile.css';
+import { Button } from '@mui/material';
 
 function Profile() {
   const [changePassword, setChangePassword] = useState(false);
@@ -18,9 +20,12 @@ function Profile() {
   return (
     <>
     <Header />
+    <div className='userprofile-container'>
     <UserProfile />
-    <button onClick={handleChangePassword}>Change Password</button>
+    <br />
+    <Button variant="outlined" onClick={handleChangePassword}>Change Password</Button>
     {changePassword && <ChangePassword />}
+    </div>
     <Footer />
     </>
   );
