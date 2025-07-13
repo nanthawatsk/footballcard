@@ -1,0 +1,32 @@
+.login {
+  background-color: #31c48d;
+  font-family: 'Roboto', sans-serif;
+  overflow: auto;
+  height: 100vh;
+  width: 100vw;
+}
+
+.loginBtn{
+  width: 100%;
+  background-color: #31c48d;
+  margin-bottom: 2%;
+}
+
+.loginBtn:hover{
+  background-color: #096a2e;
+}
+
+.login h2{
+  text-align: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.login h3{
+  font-size: 1rem;
+  text-align: right;
+}
+
+.password{
+  margin-bottom: -5%;
+}

@@ -1,0 +1,25 @@
+.navbar-brand{
+    width: 10%;
+    color: #fff;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo{
+    width: 20vh;
+}
+
+.nav-link{
+    color: #fff;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+

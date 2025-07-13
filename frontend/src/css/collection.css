@@ -1,0 +1,76 @@
+.myCollectionContainer{
+    text-align: left;
+    justify-content: left;
+}
+
+.collection-container{
+    text-align: center;
+}
+
+.createContainer{
+    text-align: center;
+    justify-content: center;
+}
+ .createBtn{
+     width: 10%;
+     color: #ffffff;
+ }
+ 
+ #createBtn{
+     background-color: #31c48d;
+     transition: all 0.3s ease-in-out;
+ }
+ 
+ #createBtn:hover{
+     background-color: #096a2e;
+ }
+
+
+.textfield{
+    width: 60%;
+}
+
+/* CSS */
+.collection-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .collection-card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    background: rgb(49,196,141);
+    background: linear-gradient(90deg, rgba(49,196,141,1) 35%, rgba(9,106,46,1) 100%);
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .collection-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .collection-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .card-content {
+    margin-top: 1rem;
+  }
+  
+  .card-content p {
+    margin: 0;
+  }
+  
+  .collection-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  

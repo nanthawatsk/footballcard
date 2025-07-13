@@ -1,0 +1,38 @@
+.select-collection{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+    background-color: #fff;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.addBtnContainer{
+   margin-top: 2rem;
+}
+
+.addBtn{
+    width: 100%;
+    color: #ccc;
+}
+
+#addBtn{
+    background-color: #31c48d;
+    transition: all 0.3s ease-in-out;
+}
+
+#addBtn:hover{
+    background-color: #096a2e;
+}
+
+#addBtn:disabled{
+    background-color: #ccc;
+}

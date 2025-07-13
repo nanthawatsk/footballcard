@@ -1,0 +1,63 @@
+.football-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin-left: 10%;
+}
+
+.footballcard {
+  width: 20%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 1.5rem;
+  padding: 10px;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.footballcard img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.footballcard h3 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.footballcard p {
+  text-align: left;
+  margin: 10px 0;
+}
+
+@media (max-width: 1200px) {
+  .footballcard {
+    width: 25%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footballcard {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .footballcard {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .footballcard {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.footballcard:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
